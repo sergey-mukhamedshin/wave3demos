@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="ctrlModule">
+<head>
+    <title>l18n editor</title>
+    <link rel="stylesheet" type="text/css" href="style/css.css">
+</head>
+<body>
+    <div class="wrapper" ng-controller="rowCtrl">
+        <div class="fileinput">
+            <input type="file" fileread class="file button" size=1/>
+        </div>
+
+        <div ng-Repeat="item in data" class="row_table">
+            <img src="style/images/close.png" ng-mouseenter="mouseenter($event)" ng-mouseleave="mouseleave($event)" ng-click="deleteRow($event,$index)">
+            <input class="field" type="text" size="25" ng-model="item.id">
+            <input class="field" type="text" size="25" ng-model="item.const">
+            <br />
+            <input class="field" type="text" size="180" ng-model="item.message">
+            <br />
+            <input class="field" type="text" size="180" ng-model="item.description">
+        </div>
+        <br />
+        <input class="button" type="button" ng-click="addNewRow($event)" value="+" >
+        <input class="button save" type="button" ng-click="saveJSONFile()" value="Save">
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+    <script src="js/controller.js"></script>
+</body>
+</html>

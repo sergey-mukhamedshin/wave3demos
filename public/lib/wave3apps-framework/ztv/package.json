@@ -1,0 +1,18 @@
+{
+	"name": "ztv",
+	"version": "0.0.1",
+	"description": "ZTV Framework",
+	"dependencides": {},
+	"devDependencies": {
+		"coffee-script": "~1.7.1",
+		"connect": "~2.12.0",
+		"gulp": "~3.5.0",
+		"gulp-concat": "~2.1.7",
+		"gulp-header": "~1.0.2",
+		"gulp-jshint": "~1.4.0",
+		"gulp-karma": "~0.0.2",
+		"gulp-load-plugins": "~0.3.0",
+		"karma-jasmine": "~0.1.0",
+		"karma-phantomjs-launcher": "*"
+	}
+}

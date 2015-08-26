@@ -1,0 +1,243 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<title>Wave3: Weather</title>
+		<meta charset="utf-8" />
+
+		<!-- build:css style.css -->
+		<link rel="stylesheet" href="style.css" />
+		<!-- endbuild -->
+
+		<!-- build:js app.js -->
+		<script src="../lib/angular/angular.js"></script>
+		<script src="../lib/jquery/dist/jquery.min.js"></script>
+
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/platform.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/platforms/default.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/platforms/BroadcomSTB.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/platforms/SamsungSmartTV.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/core.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/console.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/keyboard.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/controls.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/focusable.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/task.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/localization.js"></script>
+
+		<script type="text/javascript" src="js/resources/fr-CA.js"></script>
+		<script type="text/javascript" src="js/resources/en-CA.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/tools.js"></script>
+		<script src="js/conditions.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/weather.js"></script>
+		<script src="js/addCity.js"></script>
+		<script src="js/settings.js"></script>
+		<script src="js/error.js"></script>
+		<script src="js/terms.js"></script>
+		<script src="js/controls.js"></script>
+		<!--<script src="js/testData.js"></script>-->
+		<script src="js/dataProvider.js"></script>
+		<!-- endbuild -->
+
+	</head>
+	<body x-navigation="0" ng-controller="MainCtrl" ng-animate="">
+		<div id="body" on-key="navigateApp" focusable-group>
+			<img id="background" ng-src="{{background}}" />
+
+			<div id="weather-page" class="hidden" ng-controller="WeatherCtrl" on-key="navigate" focusable-group>
+				<div class="header">
+					<div id="cities" current-index="{{itemIndex + 1}}" current-changed="itemChanged" on-key="selectCity" focusable-group>
+						<div ng-repeat="item in mylocations.locations" tag="$index" on-focus="rescrollMenu" focusable>{{item.name}}</div>
+						<div localized="text:ADD_CITY_MENU" on-key="addCity" on-focus="rescrollMenu" focusable></div>
+					</div>
+					<div id="legend">
+						<div id="new" localized="text:ADD_CITY"></div>
+						<div id="settings" localized="text:SETTINGS"></div>
+					</div>
+				</div>
+
+				<div class="arrows">
+					<div id="weather-up" class="up "></div>
+					<div id="weather-down" class="down "></div>
+				</div>
+
+				<div id="forecasts" class="content">
+					<div id="weather-content" ng-hide="currentCity.nodata">
+						<div id="today">
+							<div id="clock">{{localTime}}</div>
+
+							<div id="icon"><img ng-src="{{currentCity.outlookIcon}}" /></div>
+
+							<div id="temperature">{{currentCity.temperature}}&deg;</div>
+
+							<div id="condition">{{currentCity.outlook}}</div>
+
+							<div id="feels-like" class="local">
+								<div localized="text:FEELS_LIKE"></div>
+								<div class="value">{{currentCity.feelsLike}}&deg;</div>
+							</div>
+
+							<div id="high-low" class="local">
+								<div localized="text:HIGH_LOW"></div>
+								<div class="value">{{currentCity.weekly[0].high}}&deg;/{{currentCity.weekly[0].low}}&deg;</div>
+							</div>
+
+							<div id="chance-of-snow" class="local">
+								<div>
+									<span localized="text:CHANCE_OF"></span>
+									<span>{{currentCity.precipitationType}}</span>
+								</div>
+								<div class="value">{{currentCity.hourly[0].pop}}%</div>
+							</div>
+						</div>
+
+						<div class="alert" ng-repeat="alert in currentCity.alerts">
+							<div class="title">{{alert.headline}}</div>
+							<div class="description">{{alert.description}}</div>
+						</div>
+
+						<div id="hourly">
+							<div class="title" localized="text:HOURLY"></div>
+							<img id="wu" src="img/wu.png" />
+							<div class="items">
+								<div ng-repeat="item in currentCity.hourly">
+									<div class="time">{{item.hour}}</div>
+									<img class="icon" ng-src="{{item.outlookIcon}}" />
+									<div class="temperature">{{item.temperature}}&deg;</div>
+									<div class="pop">{{item.pop}}%</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="weekly">
+							<div class="title" localized="text:WEEKLY"></div>
+							<div class="items">
+								<div ng-repeat="item in currentCity.weekly">
+									<div class="day">{{item.dayFormatted}}</div>
+									<img class="icon" ng-src="{{item.outlookIcon}}" />
+									<div class="temperature">
+										<span class="high">{{item.high}}&deg;</span>/
+										<span class="low">{{item.low}}&deg;</span>
+									</div>
+									<div class="pop">{{item.pop}}%</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="add-city-page" class="hidden" focusable-group ng-controller="AddCityCtrl" on-key="navigate">
+				<div class="header">
+					<div class="nav" focusable-group>
+						<div id="back" localized="text:BACK" on-key="onBack" focusable></div>
+						<div class="title" localized="text:ADD_CITY"></div>
+					</div>
+				</div>
+
+				<div class="arrows">
+					<div id="suggestions-up" class="up hidden"></div>
+					<div id="suggestions-down" class="down hidden"></div>
+				</div>
+
+				<div id="add-city-content" class="content">
+					<div id="keyboard" current-index="{{itemIndex + 2}}" current-changed="itemChanged" on-key="inputCity" focusable-group>
+						<span ng-repeat="key in 'abcdefghijklmnopqrstuvwxyz-.'" tag="key" focusable>{{key}}</span>
+						<span class="space" tag="{{' '}}" focusable></span>
+						<span class="backspace" tag="{{'backspace'}}" focusable></span>
+					</div>
+
+					<input id="add-location" type="text" ng-model="newLocationName" />
+					<div id="suggestions" class="dropdown-list hidden" on-key="selectSuggestion" focusable-group>
+						<div ng-repeat="item in suggestions" tag="item" on-focus="onSuggestionFocused" focusable>
+							<div>{{item.name}}</div>
+						</div>
+					</div>
+					<div id="nomatches" class="dropdown-list hidden" localized="text:NO_MATCHES"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="settings-overlay" class="overlay hidden" ng-controller="SettingsCtrl" on-key="navigate" focusable-group>
+			<div class="screen"></div>
+			<div class="dialog">
+				<div class="title" localized="text:SETTINGS_TITLE"></div>
+				<div id="setting-list" focusable-group>
+					<div>
+						<div class="label" localized="text:SETTINGS_TEMPERATURE"></div>
+						<div id="temperature-toggle" class="toggle local" value="{{settings.temperature}}" values="{{ [dataProvider.CELSIUS, dataProvider.FAHRENHEIT] }}" on-toggle="toggleTemperature" toggle focusable>
+							<div>&deg;C</div><div>&deg;F</div>
+						</div>
+					</div>
+					<div>
+						<div class="label" localized="text:SETTINGS_TIME_FORMAT"></div>
+						<div id="time-toggle" class="toggle local" value="{{settings.time}}" values="{{ [dataProvider.AMPM, dataProvider.HOURS24] }}" on-toggle="toggleTime" toggle focusable>
+							<div localized="text:AMPM"></div><div localized="text:24HOUR"></div>
+						</div>
+					</div>
+					<div>
+						<div class="label">
+							<span localized="text:ONSCREEN_ALERTS"></span>
+							<div class="hint local" localized="text:ALERTS_HINT"></div>
+						</div>
+						<div id="alerts-toggle" class="toggle local" value="{{settings.alerts}}" values="{{ [dataProvider.ALERTS, dataProvider.NOALERTS] }}" on-toggle="toggleAlerts" toggle focusable>
+							<div localized="text:YES"></div><div localized="text:NO"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="title" localized="text:CITIES"></div>
+				<div id="location-list" current-index="{{buttonIndex}}" focusable-group>
+					<div class="location" ng-repeat="item in locations">
+						<div class="label">{{item.name}}</div>
+						<div class="buttons">
+							<div class="button move-up" ng-class="{'hidden': $first}" on-key="onMoveUp" tag="$index" focusable></div>
+							<div class="button move-down" ng-class="{'hidden': $last}" on-key="onMoveDown" tag="$index" focusable></div>
+							<div class="button delete" localized="text:DELETE" on-key="onDelete" tag="$index" focusable></div>
+						</div>
+					</div>
+				</div>
+
+				<div id="exit-button" class="button" localized='text:EXIT' on-key="exit" focusable></div>
+			</div>
+		</div>
+
+		<div id="loading" class="overlay hidden" ng-controller="MessageCtrl" on-key="onKey" focusable>
+			<div class="dialog">
+				<div class="circles">
+					<div class="small"></div>
+					<div class="medium"></div>
+					<div class="large"></div>
+				</div>
+				{{message}}
+			</div>
+
+		</div>
+
+		<div id="error-overlay" class="overlay hidden" ng-controller="ErrorCtrl" on-key="navigate" focusable>
+			<div class="dialog">
+				<div class="title">{{title}}</div>
+				<div class="text">{{text}}</div>
+				<div class="hint">{{hint}}</div>
+			</div>
+		</div>
+
+		<div id="terms-overlay" class="overlay hidden" ng-controller="TermsCtrl" on-key="navigate" focusable-group>
+			<div class="dialog">
+				<div class="title" localized="text:POPUP_TITLE_TERMS"></div>
+				<div class="arrows">
+					<div id="terms-up" class="up hidden"></div>
+					<div id="terms-down" class="down hidden"></div>
+				</div>
+				<div id="terms-text" class="text" localized="text:POPUP_TEXT_TERMS"></div>
+
+				<div class="buttons">
+					<div class="button" localized="text:POPUP_ACCEPT_TERMS" on-key="onAccept" focusable></div>
+					<div class="button" localized="text:POPUP_DENY_TERMS" on-key="onDeny" focusable></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

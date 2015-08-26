@@ -1,0 +1,16 @@
+{
+	"messages": [
+		{
+			"id": "ASF-0410",
+			"const": "WIDGET_LOADING_FAILED",
+			"message": "Widget {{ widgetName }} is not loaded. Details: {{ error.message }}",
+			"description": "Request widget template, code, styles."
+		},
+		{
+			"id": "TR-0070",
+			"const": "ROUTES_NOT_AVAILABLE",
+			"message": "Message on french",
+			"description": "Application tries to get route directions for default location route's waypoints."
+		}
+	]
+}

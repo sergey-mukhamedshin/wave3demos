@@ -1,0 +1,16 @@
+{
+	"messages": [
+		{
+			"id": "BTN-01",
+			"const": "BTN_OK",
+			"message": "OK",
+			"description": ""
+		},
+		{
+			"id": "BTN-02",
+			"const": "BTN_CANCEL",
+			"message": "Cancel",
+			"description": ""
+		}
+	]
+}

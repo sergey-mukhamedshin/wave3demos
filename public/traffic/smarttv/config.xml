@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget>
+	<widgetname>Traffic</widgetname>
+	<description>Shows real-time traffic conditions</description>
+	<author>Zodiac Interactive LLC, 2013</author>
+	<ver>1.000</ver>
+	<ThumbIcon>img/icon.png</ThumbIcon><!-- 106x86 -->
+	<BigThumbIcon>img/icon.png</BigThumbIcon><!-- 115x95 -->
+	<ListIcon>img/icon.png</ListIcon><!-- 85x70 -->
+	<BigListIcon>img/icon.png</BigListIcon><!-- 95x78 -->
+	<category>information</category>
+	<width>1280</width>
+	<height>720</height>
+	<fullwidget>y</fullwidget>
+	<autoUpdate>n</autoUpdate>
+	<srcctl>y</srcctl>
+	<childlock>n</childlock>
+	<audiomute>y</audiomute>
+	<videomute>y</videomute>
+	<dcont>y</dcont>
+	<network>y</network>
+</widget>

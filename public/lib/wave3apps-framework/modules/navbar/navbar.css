@@ -1,0 +1,73 @@
+.navBar {
+	position: absolute;
+	right: 100px;
+	bottom: 40px;
+	color: #6A6A69;
+	font-family: OpenSans-Regular, sans-serif;
+	font-size: 18px;
+}
+
+.navButton {
+	display: inline-block;
+	margin-left: 27px;
+}
+
+.navButton.SEL:before,
+.navButton.EXIT:before,
+.navButton.UP:before,
+.navButton.DOWN:before,
+.navButton.RIGHT:before,
+.navButton.LEFT:before,
+.navButton.UP_DOWN:before,
+.navButton.UP_DOWN:after {
+	display: inline-block;
+	height: 25px;
+	line-height: 25px;
+	padding: 0 10px;
+	margin-right: 5px;
+	background-color: #6A6A69;
+	color: #F0F0F0;
+}
+
+.navButton.UP:before,
+.navButton.DOWN:before,
+.navButton.RIGHT:before,
+.navButton.LEFT:before {
+	padding: 0 5px;
+}
+
+.navButton.SEL:before {
+	content: "SEL";
+}
+
+.navButton.EXIT:before {
+	content: "EXIT";
+}
+
+.navButton.UP:before {
+	content: "\25B2";
+}
+
+.navButton.DOWN:before {
+	content: "\25BC";
+}
+
+.navButton.RIGHT:before {
+	content: "\25B6";
+}
+
+.navButton.LEFT:before {
+	content: "\25C0";
+}
+
+.navButton.UP_DOWN:before,
+.navButton.UP_DOWN:after {
+	content: "\25BC";
+	padding: 0 5px;
+}
+
+.navButton.UP_DOWN:after {
+	float: left;
+	content: "\25B2";
+	margin-right: 3px;
+}

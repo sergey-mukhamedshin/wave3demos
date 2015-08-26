@@ -1,0 +1,1693 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+* { 
+	margin: 0px;
+	padding: 0px;
+}
+
+*:focus { 
+	outline: none;
+}
+
+@media all and (max-height: 1079px) {
+
+body {
+	margin: 0px auto;
+	padding: 0px;
+	width: 1280px;
+	height: 720px;
+	font-family: 'Open Sans', sans-serif;
+	background: black;
+	color: #f0f0f0;
+}
+
+#body{
+	position: absolute;
+	width: 1280px;
+	height: 720px;
+	overflow: hidden;
+}
+
+#background {
+	width: 1280px;
+	height: 720px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.header {
+	position: relative;
+	background: rgba(16, 16, 16, 0.3);
+	height: 80px;
+	line-height: 80px;
+	padding: 0 65px;
+}
+
+.header .title {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	font-size: 30px;
+	text-align: center;
+}
+
+.content {
+	position: relative;
+	padding: 0 65px;
+	height: 640px;
+	overflow: hidden;
+}
+
+input {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.hidden { 
+	display: none !important;
+}
+
+.button {
+	display: inline-block;
+	height: 33px;
+	line-height: 33px;
+	text-align: center;
+	border: 1px solid #424242;
+}
+
+.button:focus {
+	outline: 5px solid #277e90;
+}
+
+.toggle {
+	display: inline-block;
+	height: 33px;
+	line-height: 33px;
+	width: 200px;
+	border: 1px solid #424242;
+}
+
+.toggle.fr-ca {
+	font-size: 8px;
+}
+
+.toggle:focus {
+	outline: 5px solid #277e90;
+}
+
+.toggle.a0 {
+	background: url('img/toggle-on.png');
+	background-size: 200px 33px;
+}
+
+.toggle.a1 {
+	background: url('img/toggle-off.png');
+	background-size: 200px 33px;
+}
+
+.toggle.a0:focus {
+	background-image: url('img/toggle-on-active.png');
+}
+
+.toggle.a1:focus {
+	background-image: url('img/toggle-off-active.png');
+}
+
+.toggle > div {
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+}
+
+.toggle > div.active {
+	color: #080808;
+	font-weight: bold;
+}
+
+.arrows {
+	position: absolute;
+	width: 100%;
+}
+
+.arrows > div {
+	display: block;
+	position: absolute;
+	text-align: center;
+	width: inherit;
+	height: 23px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 55px 23px;
+}
+
+.arrows > .up {
+	top: 10px;
+	background-image: url('img/scroll-up.png');
+}
+
+.arrows > .down {
+	bottom: 10px;
+	background-image: url('img/scroll-down.png');
+}
+
+.overlay {
+	z-index: 1000;
+	position: absolute;
+	top: 0px;
+	width: 1280px;
+	height: 720px;
+}
+
+.screen {
+	position: absolute;
+	background: rgba(16, 16, 16, 0.5);
+	width: 1280px;
+	height: 720px;
+}
+
+/* Weather Page */
+
+
+#weather-content {
+	font-size: 20px;
+	height: 640px;
+	overflow: hidden;
+}
+
+#weather-page .arrows {
+	height: 640px;
+}
+
+#weather-page .arrows > .up {
+	top: 5px;
+}
+
+#weather-page .arrows > .down {
+	bottom: 15px;
+}
+
+.header #cities {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	width: 800px;
+	height: 80px;
+	line-height: 80px;
+}
+
+.header #cities > div {
+	display: table-cell;
+	font-size: 20px;
+	white-space: nowrap;
+	padding-right: 22px;
+}
+
+.header #cities > div:focus {
+	font-size: 30px;
+}
+
+.header #legend {
+	display: inline-block;
+	float: right;
+}
+
+.header #legend > div {
+	display: table-cell;
+	font-size: 16px;
+	padding: 0 25px;
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: 22px 22px;
+}
+
+.header #legend #new {
+	background-image: url('img/a.png');
+}
+
+.header #legend #settings {
+	background-image: url('img/b.png');
+}
+
+#today {
+	position: relative;
+	margin-top: 36px;
+	height: 264px;
+}
+
+#today > div {
+	display: inline-block;
+	position: absolute;
+	overflow: hidden;
+}
+
+#today > #clock {
+	font-size: 20px;
+}
+
+#today > #icon {
+	top: 85px;
+	left: 2px;
+	width: 120px;
+	height: 120px
+}
+
+#today > #icon > img {
+	width: 120px;
+	height: 120px
+}
+
+#today > #temperature {
+	font-size: 165px;
+	font-weight: 100;
+	letter-spacing: -10px;
+	top: 35px;
+	left: 130px;
+	width: 350px;
+	height: 224px;
+}
+
+#today > #condition {
+	font-size: 32px;
+	top: 83px;
+	left: 490px;
+	width: 650px;
+	height: 50px;
+	font-weight: bold;
+}
+
+#today > #feels-like {
+	font-size: 24px;
+	top: 142px;
+	left: 490px;
+	height: 80px;
+	width: 130px;
+}
+
+#today > #feels-like.fr-ca {
+	font-size: 19px;
+	width: 200px;
+}
+
+#today > #feels-like .value {
+	font-size: 35px;
+}
+
+#today > #high-low {
+	font-size: 24px;
+	top: 142px;
+	left: 650px;
+	height: 80px;
+	width: 160px;
+}
+
+#today > #high-low.fr-ca {
+	left: 677px;
+	font-size: 19px;
+}
+
+#today > #high-low .value {
+	font-size: 35px;
+}
+
+#today > #chance-of-snow {
+	font-size: 24px;
+	top: 142px;
+	left: 850px;
+	height: 80px;
+	width: 200px;
+}
+
+#today > #chance-of-snow.fr-ca {
+	left: 870px;
+	font-size: 19px;
+}
+
+#today > #chance-of-snow .value {
+	font-size: 35px;
+}
+
+.alert {
+	position: relative;
+	margin-top: 36px;
+	height: 260px;
+	background-color: rgba(16, 16, 16, 0.5);
+}
+
+.alert .title {
+	background: url(img/alert.png)  no-repeat 33px center rgba(16, 16, 16, 0.65);
+	background-size: 33px 33px;
+	height: 59px;
+	line-height: 59px;
+	font-size: 27px;
+	padding-left: 80px;
+}
+
+.alert .description {
+	margin: 33px;
+	height: 139px;
+	font-size: 20px;
+	overflow: hidden;
+}
+
+#hourly {
+	position: relative;
+	margin-top: 36px;
+	font-size: 22px;
+	height: 264px;
+}
+
+#hourly > .title {
+	padding-top: 7px;
+}
+
+#hourly > #wu {
+	width: 105px;
+	height: 24px;
+	position: absolute;
+	top: 7px;
+	right: 0px;
+}
+
+#hourly > .items {
+	margin-top: 10px;
+	height: 210px;
+	background: rgba(16, 16, 16, 0.65);
+	overflow: hidden;
+}
+
+#hourly > .items > div {
+	display: inline-block;
+	width: 113px;
+	text-align: center;
+}
+
+#hourly .time {
+	margin-top: 20px;
+	font-size: 17px;
+}
+
+#hourly .icon {
+	margin-top: 10px;
+	width: 40px;
+	height: 40px;
+}
+
+#hourly .temperature {
+	margin-top: 10px;
+	font-size: 33px;
+}
+
+#hourly .pop {
+	margin-top: 10px;
+	font-size: 17px;
+}
+
+#weekly {
+	position: relative;
+	margin-top: 36px;
+	margin-bottom: 40px;
+	font-size: 22px;
+	height: 264px;
+}
+
+#weekly > .title {
+	padding-top: 7px;
+}
+
+#weekly > .items {
+	margin-top: 10px;
+	height: 210px;
+	background: rgba(16, 16, 16, 0.65);
+	overflow: hidden;
+}
+
+#weekly > .items > div {
+	display: inline-block;
+	width: 161px;
+	text-align: center;
+}
+
+#weekly .day {
+	margin-top: 20px;
+	font-size: 17px;
+}
+
+#weekly .icon {
+	margin-top: 10px;
+	width: 40px;
+	height: 40px;
+}
+
+#weekly .temperature {
+	margin-top: 10px;
+}
+
+#weekly .temperature .high {
+	font-size: 33px;
+}
+
+#weekly .temperature .low {
+	font-size: 24px;
+}
+
+#weekly .pop {
+	margin-top: 10px;
+	font-size: 17px;
+}
+
+/* Add City Page */
+
+.header .nav {
+	width: 1280px;
+}
+
+.header #back {
+	display: inline-block;
+	font-size: 20px;
+	background: url('img/left.png') no-repeat left center;
+	background-size: 15px 28px;
+	padding-left: 25px;
+}
+
+.header #back:focus {
+	font-size: 30px;
+}
+
+#add-city-page .arrows {
+	height: 640px;
+}
+
+#add-city-page .arrows > .up {
+	top: 15px;
+}
+
+#add-city-page .arrows > .down {
+	bottom: 65px;
+}
+
+#keyboard {
+	position: absolute;
+	top: 66px;
+	left: 164px;
+}
+
+#keyboard > span {
+	display: table-cell;
+	vertical-align: bottom;
+	height: 50px;
+	line-height: 50px;
+	font-size: 33px;
+	text-align: left;
+	width: 30px;
+	font-family: monospace;
+}
+
+#keyboard > span:focus {
+	font-size: 50px;
+}
+
+#keyboard > span.space {
+	width: 50px;
+	background: url('img/space.png') no-repeat bottom center;
+	background-size: 50px 50px;
+}
+
+#keyboard > span.space:focus {
+	background-image: url('img/space-active.png');
+	background-size: 50px 50px;
+}
+
+#keyboard > span.backspace {
+	width: 50px;
+	background: url('img/backspace.png') no-repeat bottom center;
+	background-size: 50px 50px;
+}
+
+#keyboard > span.backspace:focus {
+	background-image: url('img/backspace-active.png');
+	background-size: 50px 50px;
+}
+
+#add-location {
+	display: block;
+	margin: 140px auto 0 auto;
+	width: 480px;
+	height: 47px;
+	line-height: 47px;
+	border: none;
+	background: url('img/search.png') no-repeat 98% center rgba(08, 08, 08, 0.4);
+	background-size: 23px 23px;
+	padding: 0 50px 0 30px;
+	font-size: 26px;
+	color: #f0f0f0;
+}
+
+#nomatches {
+	display: block;
+	margin: 0 auto;
+	width: 500px;
+	height: 100px;
+	line-height: 100px;
+	padding: 0 30px;
+	font-size: 26px;
+	overflow: hidden;
+	background: rgba(08, 08, 08, 1);
+	opacity: 0.3;
+}
+
+#suggestions {
+	display: block;
+	margin: 0 auto;
+	width: 560px;
+	height: 340px;
+	font-size: 26px;
+	overflow: hidden;
+	background: rgba(08, 08, 08, 0.3);
+}
+
+#suggestions > div {
+	margin: 0;
+	border: 5px solid transparent;
+}
+
+#suggestions > div > div {
+	border: 3px solid transparent;
+	overflow: hidden;
+	height: 52px;
+	line-height: 52px;
+	padding: 0 18px;
+}
+
+#suggestions > div:focus {
+	background: rgba(255, 255, 255, 0.1);
+	border: 5px solid #277e90;
+}
+
+#suggestions > div:focus > div {
+	border: 3px solid #ebebeb;
+}
+
+/* Setting */
+
+#settings-overlay > .dialog {
+	position: absolute;
+	top: 58px;
+	left: 314px;
+	width: 532px;
+	height: 609px;
+	background: url('img/settings-background.png') no-repeat center center;
+	background-size: 652px 609px;
+	padding: 0 20px 0 60px;
+	text-align: left;
+}
+
+#settings-overlay .title {
+	font-size: 27px;
+	line-height: 66px;
+}
+
+#settings-overlay .title:first-child {
+	line-height: 60px;
+}
+
+#settings-overlay #exit-button {
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+	height: 40px;
+	line-height: 40px;
+	width: 602px;
+	text-align: center;
+	border: none;
+}
+
+#setting-list > div {
+	height: 53px;
+	line-height: 53px;
+	
+}
+
+#setting-list .label {
+	display: inline-block;
+	width: 291px;
+	height: 52px;
+	font-size: 20px;
+}
+
+#setting-list .label > .hint {
+	display: inline-block;
+	position: absolute;
+	font-size: 14px;
+	color: gray;
+	width: 116px;
+	line-height: 20px;
+	padding: 6px 12px;
+	overflow: hidden;
+}
+
+#setting-list .label > .hint.fr-ca {
+	font-size: 8px;
+	width: 102px;
+	padding: 9px 9px;
+}
+
+#location-list {
+	position: absolute;
+	height: 270px;
+	overflow-y: scroll;
+}
+
+#location-list::-webkit-scrollbar {
+	width: 6px;
+}
+ 
+#location-list::-webkit-scrollbar-track {
+	border-radius: 10px;
+}
+ 
+#location-list::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: rgba(142, 142, 142, 1);
+}
+
+#location-list .location {
+	position: relative;
+	width: 538px;
+	height: 54px;
+	overflow: hidden;
+}
+
+#location-list .label {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: inline-block;
+	width: 296px;
+	height: 52px;
+	line-height: 52px;
+	font-size: 20px;
+	overflow: hidden;
+}
+
+#location-list .buttons {
+	position: absolute;
+	top: 0px;
+	left: 306px;
+	display: inline-block;
+	height: 52px;
+	width: 192px;
+	overflow: hidden;
+}
+
+#location-list .buttons > div {
+	position: absolute;
+	top: 10px;
+	height: 33px;
+	line-height: 33px;
+	text-align: center;
+	border: 1px solid #424242;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 44px 33px;
+}
+
+#location-list .move-up {
+	left: 5px;
+	width: 44px;
+	background-image: url('img/up-button.png');
+}
+
+#location-list .move-down {
+	left: 59px;
+	width: 44px;
+	background-image: url('img/down-button.png');
+}
+
+#location-list .delete {
+	left: 113px;
+	width: 70px;
+}
+
+/* Terms */
+
+#terms-overlay .dialog {
+	position: relative;
+	margin: 30px;
+	background: rgba(16, 16, 16, 0.65);
+}
+
+#terms-overlay .title {
+	background-color: rgba(16, 16, 16, 0.5);
+	text-align: center;
+	font-size: 27px;
+	line-height: 66px;
+}
+
+#terms-overlay .text {
+	margin: 53px 50px;
+	font-size: 20px;
+	height: 420px;
+	overflow: hidden;
+	text-align: justify;
+}
+
+#terms-overlay .buttons {
+	height: 66px;
+	text-align: center;
+}
+
+#terms-overlay .button {
+	width: 120px;
+	display: inline-block;
+	font-size: 20px;
+	line-height: 33px;
+}
+
+#terms-overlay .button + .button {
+	margin: 10px 20px;
+}
+
+#terms-overlay .arrows {
+	height: 525px;
+}
+
+/* Loading & Saving */
+
+#loading .dialog {
+	position: relative;
+	margin: 200px auto;
+	background: url('img/cloudy_loader.png') no-repeat center 0px rgba(16, 16, 16, 0.3);
+	background-size: 210px 210px;
+	width: 333px;
+	height: 142px;
+	padding-top: 110px;
+	text-align: center;
+	font-size: 26px;
+}
+
+#loading .circles {
+	margin-bottom: 30px;
+	height: 28px;
+}
+
+#loading .circles > div {
+	position: absolute;
+	border-radius: 50%;
+	background: #9ea5a9;
+}
+
+#loading .circles > .small {
+	width: 10px;
+	height: 10px;
+	top: 120px;
+	left: 120px;
+}
+
+#loading .circles > .medium {
+	width: 16px;
+	height: 16px;
+	top: 115px;
+	left: 150px;
+}
+
+#loading .circles > .large {
+	width: 22px;
+	height: 22px;
+	top: 111px;
+	left: 185px;
+}
+
+/* Error */
+
+#error-overlay > .dialog {
+	position: relative;
+	margin: 200px auto;
+	width: 560px;
+	background-color: rgba(16, 16, 16, 0.3);
+}
+
+#error-overlay .title {
+	background: url(img/error_icon.png)  no-repeat 33px center rgba(16, 16, 16, 0.42);
+	background-size: 33px 32px;
+	height: 59px;
+	line-height: 59px;
+	font-size: 27px;
+	padding-left: 80px;
+}
+
+#error-overlay .text  {
+	padding: 33px 53px 33px 33px;
+	font-size: 20px;
+	overflow: hidden;
+}
+
+#error-overlay .hint  {
+	text-align: center;
+	overflow: hidden;
+	padding: 20px;
+}
+
+
+}
+
+@media all and (min-width: 1920px) and (min-height: 1080px) {
+
+body {
+	margin: 0px auto;
+	padding: 0px;
+	width: 1920px;
+	height: 1080px;
+	font-family: 'Open Sans', sans-serif;
+	background: black;
+	color: #f0f0f0;
+}
+
+#body{
+	position: absolute;
+	width: 1920px;
+	height: 1080px;
+	overflow: hidden;
+}
+
+#background {
+	width: 1920px;
+	height: 1080px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.header {
+	position: relative;
+	background: rgba(16, 16, 16, 0.3);
+	height: 120px;
+	line-height: 120px;
+	padding: 0 99px;
+}
+
+.header .title {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	font-size: 45px;
+	text-align: center;
+}
+
+.content {
+	position: relative;
+	padding: 0 99px;
+	height: 960px;
+	overflow: hidden;
+}
+
+input {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.hidden { 
+	display: none !important;
+}
+
+.button {
+	display: inline-block;
+	height: 49px;
+	line-height: 49px;
+	text-align: center;
+	border: 2px solid #424242;
+}
+
+.button:focus {
+	outline: 8px solid #277e90;
+}
+
+.toggle {
+	display: inline-block;
+	height: 49px;
+	line-height: 49px;
+	width: 300px;
+	border: 2px solid #424242;
+}
+
+.toggle.fr-ca {
+	font-size: 13px;
+}
+
+.toggle:focus {
+	outline: 8px solid #277e90;
+}
+
+.toggle.a0 {
+	background: url('img/toggle-on.png');
+	background-size: 300px 50px;
+}
+
+.toggle.a1 {
+	background: url('img/toggle-off.png');
+	background-size: 300px 50px;
+}
+
+.toggle.a0:focus {
+	background: url('img/toggle-on-active.png');
+}
+
+.toggle.a1:focus {
+	background: url('img/toggle-off-active.png');
+}
+
+.toggle > div {
+	display: inline-block;
+	width: 150px;
+	text-align: center;
+}
+
+.toggle > div.active {
+	color: #080808;
+	font-weight: bold;
+}
+
+.arrows {
+	position: absolute;
+	width: 100%;
+}
+
+.arrows > div {
+	display: block;
+	position: absolute;
+	text-align: center;
+	width: inherit;
+	height: 35px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.arrows > .up {
+	top: 15px;
+	background-image: url('img/scroll-up.png');
+}
+
+.arrows > .down {
+	bottom: 15px;
+	background-image: url('img/scroll-down.png');
+}
+
+.overlay {
+	z-index: 1000;
+	position: absolute;
+	top: 0px;
+	width: 1920px;
+	height: 1080px;
+}
+
+.screen {
+	position: absolute;
+	background: rgba(16, 16, 16, 0.5);
+	width: 1920px;
+	height: 1080px;
+}
+
+/* Weather Page */
+
+
+#weather-content {
+	font-size: 30px;
+	height: 960px;
+	overflow: hidden;
+}
+
+#weather-page .arrows {
+	height: 960px;
+}
+
+#weather-page .arrows > .up {
+	top: 8px;
+}
+
+#weather-page .arrows > .down {
+	bottom: 23px;
+}
+
+.header #cities {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	width: 1200px;
+	height: 120px;
+	line-height: 120px;
+}
+
+.header #cities > div {
+	display: table-cell;
+	font-size: 30px;
+	white-space: nowrap;
+	padding-right: 33px;
+}
+
+.header #cities > div:focus {
+	font-size: 45px;
+}
+
+.header #legend {
+	display: inline-block;
+	float: right;
+}
+
+.header #legend > div {
+	display: table-cell;
+	font-size: 23px;
+	padding: 0 38px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.header #legend #new {
+	background-image: url('img/a.png');
+}
+
+.header #legend #settings {
+	background-image: url('img/b.png');
+}
+
+#today {
+	position: relative;
+	margin-top: 54px;
+	height: 396px;
+}
+
+#today > div {
+	display: inline-block;
+	position: absolute;
+	overflow: hidden;
+}
+
+#today > #clock {
+	font-size: 30px;
+}
+
+#today > #icon {
+	top: 128px;
+	left: 3px;
+	width: 180px;
+	height: 180px
+}
+
+#today > #icon > img {
+	width: 180px;
+	height: 180px
+}
+
+#today > #temperature {
+	font-size: 247px;
+	font-weight: 100;
+	letter-spacing: -15px;
+	top: 52px;
+	left: 195px;
+	width: 525px;
+	height: 336px;
+}
+
+#today > #condition {
+	font-size: 48px;
+	top: 124px;
+	left: 735px;
+	width: 975px;
+	height: 75px;
+	font-weight: bold;
+}
+
+#today > #feels-like {
+	font-size: 36px;
+	top: 213px;
+	left: 735px;
+	height: 120px;
+	width: 195px;
+}
+
+#today > #feels-like.fr-ca {
+	font-size: 28px;
+	width: 235px;
+}
+
+#today > #feels-like .value {
+	font-size: 53px;
+}
+
+#today > #high-low {
+	font-size: 36px;
+	top: 213px;
+	left: 975px;
+	height: 120px;
+	width: 240px;
+}
+
+#today > #high-low.fr-ca {
+	left: 1015px;
+	font-size: 28px;
+}
+
+#today > #high-low .value {
+	font-size: 53px;
+}
+
+#today > #chance-of-snow {
+	font-size: 36px;
+	top: 213px;
+	left: 1275px;
+	height: 120px;
+	width: 300px;
+}
+
+#today > #chance-of-snow.fr-ca {
+	left: 1305px;
+	font-size: 28px;
+}
+
+#today > #chance-of-snow .value {
+	font-size: 53px;
+}
+
+.alert {
+	position: relative;
+	margin-top: 54px;
+	height: 390px;
+	background-color: rgba(16, 16, 16, 0.5);
+}
+
+.alert .title {
+	background: url(img/alert.png)  no-repeat 33px center rgba(16, 16, 16, 0.65);
+	background-size: 50px 50px;
+	height: 88px;
+	line-height: 88px;
+	font-size: 40px;
+	padding-left: 100px;
+}
+
+.alert .description {
+	margin: 49px;
+	height: 209px;
+	font-size: 30px;
+	overflow: hidden;
+}
+
+#hourly {
+	position: relative;
+	margin-top: 54px;
+	font-size: 33px;
+	height: 396px;
+}
+
+#hourly > .title {
+	padding-top: 11px;
+}
+
+#hourly > #wu {
+	width: 158px;
+	height: 36px;
+	position: absolute;
+	top: 11px;
+	right: 0px;
+}
+
+#hourly > .items {
+	margin-top: 15px;
+	height: 315px;
+	background: rgba(16, 16, 16, 0.65);
+	overflow: hidden;
+}
+
+#hourly > .items > div {
+	display: inline-block;
+	width: 169px;
+	text-align: center;
+}
+
+#hourly .time {
+	margin-top: 30px;
+	font-size: 25px;
+}
+
+#hourly .icon {
+	margin-top: 15px;
+	width: 60px;
+	height: 60px;
+}
+
+#hourly .temperature {
+	margin-top: 15px;
+	font-size: 49px;
+}
+
+#hourly .pop {
+	margin-top: 15px;
+	font-size: 25px;
+}
+
+#weekly {
+	position: relative;
+	margin-top: 54px;
+	margin-bottom: 60px;
+	font-size: 33px;
+	height: 396px;
+}
+
+#weekly > .title {
+	padding-top: 11px;
+}
+
+#weekly > .items {
+	margin-top: 15px;
+	height: 315px;
+	background: rgba(16, 16, 16, 0.65);
+	overflow: hidden;
+}
+
+#weekly > .items > div {
+	display: inline-block;
+	width: 240px;
+	text-align: center;
+}
+
+#weekly .day {
+	margin-top: 30px;
+	font-size: 25px;
+}
+
+#weekly .icon {
+	margin-top: 15px;
+	width: 60px;
+	height: 60px;
+}
+
+#weekly .temperature {
+	margin-top: 15px;
+}
+
+#weekly .temperature .high {
+	font-size: 49px;
+}
+
+#weekly .temperature .low {
+	font-size: 36px;
+}
+
+#weekly .pop {
+	margin-top: 15px;
+	font-size: 25px;
+}
+
+/* Add City Page */
+
+.header .nav {
+	width: 1920px;
+}
+
+.header #back {
+	display: inline-block;
+	font-size: 30px;
+	background: url('img/left.png') no-repeat left center;
+	background-size: 23px 42px;
+	padding-left: 38px;
+}
+
+.header #back:focus {
+	font-size: 45px;
+}
+
+#add-city-page .arrows {
+	height: 960px;
+}
+
+#add-city-page .arrows > .up {
+	top: 23px;
+}
+
+#add-city-page .arrows > .down {
+	bottom: 97px;
+}
+
+#keyboard {
+	position: absolute;
+	top: 99px;
+	left: 246px;
+}
+
+#keyboard > span {
+	display: table-cell;
+	vertical-align: bottom;
+	height: 75px;
+	line-height: 75px;
+	font-size: 49px;
+	text-align: left;
+	width: 45px;
+	font-family: monospace;
+}
+
+#keyboard > span:focus {
+	font-size: 75px;
+}
+
+#keyboard > span.space {
+	width: 75px;
+	background: url('img/space.png') no-repeat bottom center;
+	background-size: 75px 75px;
+}
+
+#keyboard > span.space:focus {
+	background-image: url('img/space-active.png');
+	background-size: 75px 75px;
+}
+
+#keyboard > span.backspace {
+	width: 75px;
+	background: url('img/backspace.png') no-repeat bottom center;
+	background-size: 75px 75px;
+}
+
+#keyboard > span.backspace:focus {
+	background-image: url('img/backspace-active.png');
+	background-size: 75px 75px;
+}
+
+#add-location {
+	display: block;
+	margin: 210px auto 0 auto;
+	width: 720px;
+	height: 70px;
+	line-height: 70px;
+	border: none;
+	background: url('img/search.png') no-repeat 98% center rgba(08, 08, 08, 0.4);
+	background-size: 34px 34px;
+	padding: 0 75px 0 45px;
+	font-size: 39px;
+	color: #f0f0f0;
+}
+
+#nomatches {
+	display: block;
+	margin: 0 auto;
+	width: 750px;
+	height: 150px;
+	line-height: 150px;
+	padding: 0 45px;
+	font-size: 39px;
+	overflow: hidden;
+	background: rgba(08, 08, 08, 1);
+	opacity: 0.3;
+}
+
+#suggestions {
+	display: block;
+	margin: 0 auto;
+	width: 840px;
+	height: 510px;
+	font-size: 39px;
+	overflow: hidden;
+	background: rgba(08, 08, 08, 0.3);
+}
+
+#suggestions > div {
+	margin: 0;
+	border: 8px solid transparent;
+}
+
+#suggestions > div > div {
+	border: 4px solid transparent;
+	overflow: hidden;
+	height: 78px;
+	line-height: 78px;
+	padding: 0 27px;
+}
+
+#suggestions > div:focus {
+	background: rgba(255, 255, 255, 0.1);
+	border: 8px solid #277e90;
+}
+
+#suggestions > div:focus > div {
+	border: 4px solid #ebebeb;
+}
+
+/* Setting */
+
+#settings-overlay > .dialog {
+	position: absolute;
+	top: 87px;
+	left: 471px;
+	width: 798px;
+	height: 914px;
+	background: url('img/settings-background.png') no-repeat center center;
+	background-size: 978px 914px;
+	padding: 0 20px 0 60px;
+	text-align: left;
+}
+
+#settings-overlay .title {
+	font-size: 40px;
+	line-height: 99px;
+}
+
+#settings-overlay .title:first-child {
+	line-height: 90px;
+}
+
+#settings-overlay #exit-button {
+	position: absolute;
+	left: 8px;
+	bottom: 8px;
+	height: 60px;
+	line-height: 60px;
+	width: 860px;
+	text-align: center;
+	border: none;
+}
+
+#setting-list > div {
+	height: 79px;
+	line-height: 79px;
+	
+}
+
+#setting-list .label {
+	display: inline-block;
+	width: 436px;
+	height: 78px;
+	font-size: 30px;
+}
+
+#setting-list .label > .hint {
+	display: inline-block;
+	position: absolute;
+	font-size: 21px;
+	color: gray;
+	width: 174px;
+	line-height: 30px;
+	padding: 9px 18px;
+	overflow: hidden;
+}
+
+#setting-list .label > .hint.fr-ca {
+	font-size: 13px;
+	width: 160px;
+	padding: 9px 9px;
+}
+
+#location-list {
+	position: absolute;
+	height: 405px;
+	overflow-y: scroll;
+}
+
+#location-list::-webkit-scrollbar {
+	width: 9px;
+}
+ 
+#location-list::-webkit-scrollbar-track {
+	border-radius: 15px;
+}
+ 
+#location-list::-webkit-scrollbar-thumb {
+	border-radius: 15px;
+	background-color: rgba(142, 142, 142, 1);
+}
+
+#location-list .location {
+	position: relative;
+	width: 807px;
+	height: 81px;
+	overflow: hidden;
+}
+
+#location-list .label {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: inline-block;
+	width: 444px;
+	height: 78px;
+	line-height: 78px;
+	font-size: 30px;
+	overflow: hidden;
+}
+
+#location-list .buttons {
+	position: absolute;
+	top: 0px;
+	left: 459px;
+	display: inline-block;
+	height: 78px;
+	width: 288px;
+	overflow: hidden;
+}
+
+#location-list .buttons > div {
+	position: absolute;
+	top: 15px;
+	height: 49px;
+	line-height: 49px;
+	text-align: center;
+	border: 2px solid #424242;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 66px 50px;
+}
+
+#location-list .move-up {
+	left: 8px;
+	width: 66px;
+	background-image: url('img/up-button.png');
+}
+
+#location-list .move-down {
+	left: 89px;
+	width: 66px;
+	background-image: url('img/down-button.png');
+}
+
+#location-list .delete {
+	left: 170px;
+	width: 105px;
+}
+
+/* Terms */
+
+#terms-overlay .dialog {
+	position: relative;
+	margin: 45px;
+	background: rgba(16, 16, 16, 0.65);
+}
+
+#terms-overlay .title {
+	background-color: rgba(16, 16, 16, 0.5);
+	text-align: center;
+	font-size: 40px;
+	line-height: 99px;
+}
+
+#terms-overlay .text {
+	margin: 79px 75px;
+	font-size: 30px;
+	height: 630px;
+	overflow: hidden;
+	text-align: justify;
+}
+
+#terms-overlay .buttons {
+	height: 99px;
+	text-align: center;
+}
+
+#terms-overlay .button {
+	width: 180px;
+	display: inline-block;
+	font-size: 30px;
+	line-height: 49px;
+}
+
+#terms-overlay .button + .button {
+	margin: 15px 30px;
+}
+
+#terms-overlay .arrows {
+	height: 787px;
+}
+
+/* Loading & Saving */
+
+#loading .dialog {
+	position: relative;
+	margin: 300px auto;
+	background: url('img/cloudy_loader.png') no-repeat center 0px rgba(16, 16, 16, 0.3);
+	background-size: 315px 315px;
+	width: 500px;
+	height: 213px;
+	padding-top: 165px;
+	text-align: center;
+	font-size: 39px;
+}
+
+#loading .circles {
+	margin-bottom: 45px;
+	height: 42px;
+}
+
+#loading .circles > div {
+	position: absolute;
+	border-radius: 50%;
+	background: #9ea5a9;
+}
+
+#loading .circles > .small {
+	width: 15px;
+	height: 15px;
+	top: 180px;
+	left: 180px;
+}
+
+#loading .circles > .medium {
+	width: 24px;
+	height: 24px;
+	top: 173px;
+	left: 225px;
+}
+
+#loading .circles > .large {
+	width: 33px;
+	height: 33px;
+	top: 167px;
+	left: 278px;
+}
+
+/* Error */
+
+#error-overlay > .dialog {
+	position: relative;
+	margin: 300px auto;
+	width: 840px;
+	background-color: rgba(16, 16, 16, 0.3);
+}
+
+#error-overlay .title {
+	background: url(img/error_icon.png)  no-repeat 33px center rgba(16, 16, 16, 0.42);
+	background-size: 47px 46px;
+	height: 59px;
+	line-height: 59px;
+	font-size: 27px;
+	padding-left: 100px;
+}
+
+#error-overlay .text  {
+	padding: 49px 79px 49px 49px;
+	font-size: 30px;
+	overflow: hidden;
+}
+
+#error-overlay .hint  {
+	font-size: 20px;
+	text-align: center;
+	overflow: hidden;
+	padding: 30px;
+}
+
+
+}

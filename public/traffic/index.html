@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Wave3: Traffic</title>
+
+		<!-- build:js app.js -->
+		<script src="../lib/angular/angular.js"></script>
+
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/platform.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/platforms/default.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/platforms/BroadcomSTB.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/platforms/SamsungSmartTV.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/core.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/console.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/loader.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/keyboard.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/focusable.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/controls.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/task.js"></script>
+		<script type="text/javascript" src="../lib/wave3apps-framework/framework/localization.js"></script>
+
+		<script type="text/javascript" src="js/config.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/welcome.js"></script>
+		<script type="text/javascript" src="js/destinations.js"></script>
+		<script type="text/javascript" src="js/add.js"></script>
+		<script type="text/javascript" src="js/delete.js"></script>
+		<script type="text/javascript" src="js/map.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
+		<script type="text/javascript" src="js/resources/fr-CA.js"></script>
+		<script type="text/javascript" src="js/resources/en-CA.js"></script>
+		<!-- endbuild -->
+
+		<!-- build:css style.css -->
+		<link rel="stylesheet" type="text/css" href="style1280x720.css">
+		<!-- link rel="stylesheet" type="text/css" href="style1920x1080.css" -->
+
+		<!-- endbuild -->
+	</head>
+	
+	<body ng-controller="MainCtrl" x-navigation="0" on-key="navigateApp">
+		<div id="map"></div>
+		<div id="controls">
+			<div id="map-controls" class="hidden">
+				<div id="zoom-indicator">
+					<div id="zoom-state" class="zoom-14"></div>
+				</div>
+				<div id="pan-legend"></div>
+				<div id="traffic-legend"></div>
+			</div>
+
+			<div id="destinations" class="overlay hidden" ng-controller="DestinationsCtrl" on-key="navigate" focusable-group>
+				<div id="offsides" focusable>
+					<div id="marker-proto" class="marker hidden"></div>
+					<div id="offside-proto" class="offsideMarker hidden"></div>
+				</div>
+				<div class="header">
+					<div class="title" localized="text:HEADER_TRAFFIC"></div>
+					<div class="clock">{{currentTime}}</div>
+
+					<div class="shortcuts" ng-hide="routes.length">
+						<div class="yellow" localized="text:CENTER_MAP"></div>
+						<div class="blue" localized="text:ADD_DESTINATION"></div>
+					</div>
+					<div class="shortcuts" ng-show="routes.length">
+						<div class="yellow" localized="text:MAP_MODE" ng-show="selectDestinationsMode"></div>
+						<div class="yellow" localized="text:SELECT_DESTINATION" ng-hide="selectDestinationsMode"></div>
+						<div class="blue" localized="text:MANAGE_DESTINATIONS"></div>
+					</div>
+				</div>
+
+				<div id="routes-list" class="locations" ng-show="routes.length" on-key="navigateMenu" focusable-group>
+					<div class="location home local" on-key="navigateHome" focusable>
+						<div class="icon"></div>
+						<div class="name" localized="text:BUTTON_HOME"></div>
+					</div>
+					<div class="location local" ng-repeat="item in routes" tag="item" on-key="navigateDestination" focusable>
+						<div class="icon {{item.conditions}} {{item.icon}}"></div>
+						<div class="name">{{item.name}}</div>
+						<div class="condition {{item.conditions}}">{{conditionTexts[item.conditions]}}</div>
+					</div>
+					<div class="location new local" on-key="addDestination" ng-hide="routes.length >= maxDestinations" focusable>
+						<div class="icon"></div>
+						<div class="name" localized="text:BUTTON_ADD"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="welcome" class="overlay hidden" ng-controller="WelcomeCtrl" focusable-group>
+				<div id="screenshot"></div>
+				<div id="tabs">
+					<div id="welcome-introduce" class="hidden" focusable-group>
+						<div class="home-marker"></div>
+						<div id="overlay"></div>
+						<div class="controls">
+							<div class="title" localized="text:WELCOME_INTRODUCTION_TITLE"></div>
+							<div class="text">
+								<p localized="text:WELCOME_INTRODUCTION_TRAFFIC"></p>
+								<p localized="text:WELCOME_INTRODUCTION_SAVE"></p>
+							</div>
+							<div class="buttons">
+								<div on-key="nextStep" localized="text:BUTTON_NEXT" focusable></div>
+								<div on-key="showMap" localized="text:BUTTON_SKIP" focusable></div>
+							</div>
+						</div>
+					</div>
+					<div id="welcome-navigate" class="hidden" focusable-group>
+						<div class="home-marker"></div>
+						<div id="overlay"></div>
+						<div class="controls">
+							<div class="title" localized="text:WELCOME_NAVIGATE_TITLE"></div>
+							<div class="text">
+								<p class="howto local" localized="text:WELCOME_NAVIGATE_HOWTO"></p>
+								<p class="details" localized="text:WELCOME_NAVIGATE_PAN"></p>
+								<p class="details" localized="text:WELCOME_NAVIGATE_ZOOM"></p>
+								<div class="remote"></div>
+							</div>
+							<div class="buttons">
+								<div localized="text:BUTTON_NEXT" on-key="nextStep" focusable></div>
+								<div localized="text:BUTTON_SKIP" on-key="showMap" focusable></div>
+							</div>
+						</div>
+					</div>
+					<div id="welcome-save" class="hidden" focusable-group>
+						<div class="home-marker"></div>
+						<div class="work-marker"></div>
+						<div id="overlay"></div>
+						<div class="controls">
+							<div class="title" localized="text:WELCOME_SAVE_TITLE"></div>
+							<div class="text">
+								<p localized="text:WELCOME_SAVE_TEXT"></p>
+							</div>
+							<div class="work-indicator local">
+								<div class="icon"></div>
+								<div class="place" localized="text:PREDEFINED_WORK"></div>
+								<div class="condition" localized="text:CONDITION_GOOD"></div>
+							</div>
+							<div class="buttons">
+								<div localized="text:BUTTON_ADD_DESTINATION" on-key="showAddDestination" focusable></div>
+								<div localized="text:BUTTON_GO_TO_MAP" on-key="showMap" focusable></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="progress">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+
+			<div id="add-destination" class="overlay hidden" ng-controller="AddCtrl" on-key="navigate" focusable-group>
+				<div class="header">
+					<div class="title" localized="text:HEADER_ADD"></div>
+					<div class="clock">{{currentTime}}</div>
+					<div class="shortcuts">
+						<div class="blue" localized="text:BACK_TO_MAP"></div>
+					</div>
+				</div>
+				<div id="add-instructions" class="instructions" localized="text:NAVIGATION_INSTRUCTIONS"></div>
+				<div id="new-marker"></div>
+
+				<div id="predefined" class="toolbar hidden" focusable-group>
+					<div class="title" localized="text:PREDEFINED_TITLE"></div>
+					<div class="destinations" focusable-group on-key="savePredefined">
+						<div class="button work pale" tag="work" localized="text:PREDEFINED_WORK" focusable></div>
+						<div class="button school pale" tag="school" localized="text:PREDEFINED_SCHOOL" focusable></div>
+						<div class="button store pale" tag="store" localized="text:PREDEFINED_STORE" focusable></div>
+						<div class="button family pale" tag="family" localized="text:PREDEFINED_FAMILY" focusable></div>
+						<div class="button travel pale" tag="travel" localized="text:PREDEFINED_TRAVEL" focusable></div>
+					</div>
+					<div class="button" localized="text:CUSTOM_LABEL_BUTTON" on-key="editName" focusable></div>
+				</div>
+				<div id="name-entry" class="toolbar hidden" focusable-group>
+					<div class="title" localized="text:CUSTOM_LABEL_TITLE"></div>
+					<input id="name" type="text" autocomplete="off" placeholder="Enter destination name" ng-model="destinationName" focusable />
+					<div class="buttons">
+						<div id="save-name" class="button" localized="text:BUTTON_SAVE_NAME" on-key="saveName" focusable></div>
+						<div class="button" localized="text:BUTTON_CANCEL" on-key="cancel" focusable></div>
+					</div>
+				</div>
+				<div id="icon-selection" class="toolbar hidden" focusable-group>
+					<div class="title" localized="text:CUSTOM_ICON_TITLE"></div>
+					<div class="icons" focusable-group on-key="saveIcon">
+						<div class="button work pale" tag="work" focusable></div>
+						<div class="button work2 pale" tag="work2" focusable></div>
+						<div class="button school pale" tag="school" focusable></div>
+						<div class="button food pale" tag="food" focusable></div>
+						<div class="button gym pale" tag="gym" focusable></div>
+						<div class="button star pale" tag="star" focusable></div>
+						<div class="button heart pale" tag="heart" focusable></div>
+						<div class="button shopping pale" tag="shopping" focusable></div>
+						<div class="button school2 pale" tag="school2" focusable></div>
+						<div class="button health pale" tag="health" focusable></div>
+						<div class="button family pale" tag="family" focusable></div>
+						<div class="button park pale" tag="park" focusable></div>
+						<div class="button store pale" tag="store" focusable></div>
+						<div class="button travel pale" tag="travel" focusable></div>
+					</div>
+
+				</div>
+				<div id="confirmation" class="toolbar hidden" focusable-group>
+					<div class="title" localized="text:PREVIEW_TITLE"></div>
+					<div class="tile-button" focusable on-key="editIcon">
+						<span localized="text:PREVIEW_ICON"></span>
+						<div class="icon {{destinationIcon}}"></div>
+					</div>
+					<div class="tile-button" focusable on-key="editName">
+						<span localized="text:PREVIEW_LABEL"></span>
+						<div class="text">{{destinationName}}</div>
+					</div>
+					<div class="buttons">
+						<div class="button" localized="text:BUTTON_ADD_DESTINATION" on-key="addDestination" focusable></div>
+						<div class="button" localized="text:BUTTON_CANCEL" on-key="cancel" focusable></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="delete" class="overlay hidden" ng-controller="DeleteCtrl" on-key="navigate" focusable-group>
+				<div class="header">
+					<div class="title" localized="text:HEADER_TRAFFIC"></div>
+					<div class="clock">{{currentTime}}</div>
+
+					<div class="shortcuts">
+						<div class="blue" localized="text:BACK_TO_MAP">back to map</div>
+					</div>
+				</div>
+
+				<div class="shadow"></div>
+				<div id="delete-list" class="locations" current-index="{{currentIndex}}" current-changed="currentChanged" focusable-group>
+					<div class="location local" ng-repeat="item in routes" tag="$index" on-key="showDeletePopup" focusable>
+					<div class="details">
+						<div class="icon {{item.conditions}} {{item.icon}}"></div>
+						<div class="name">{{item.name}}</div>
+						<div class="condition {{item.conditions}}">{{conditionTexts[item.conditions]}}</div>
+						<div class="delete-icon"></div>
+					</div>
+				</div>
+					<div class="location new local" on-key="addDestination" ng-hide="routes.length >= maxDestinations" focusable>
+						<div class="icon"></div>
+						<div class="name" localized="text:BUTTON_ADD"></div>
+					</div>
+				</div>
+				<div id="delete-popup" class="delete-popup hidden" focusable-group>
+					<span localized="text:DELETE_CONFIRM"></span> {{routes[routeIndex].name}}?
+					<div class="button" localized="text:BUTTON_DELETE" on-key="deleteDestination" focusable>Delete</div>
+					<div class="button" localized="text:BUTTON_CANCEL" on-key="hideDeletePopup" focusable>Cancel</div>
+				</div>
+			</div>
+
+			<div class="popup hidden" ng-controller="MessageCtrl" on-key="onKey" focusable>
+				<div class="screen"></div>
+				<div class="message">{{message}}</div>
+			</div>
+
+			<div class="popup hidden" ng-controller="PopupCtrl" on-key="onKey" focusable-group>
+				<div class="screen"></div>
+				<div class="dialog">
+					<div class="workarea">
+						<div class="text">{{message}}</div>
+						<div class="button" ng-repeat="button in buttons" on-key="onButtonKey" tag="button.handler" focusable>
+							{{button.text}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

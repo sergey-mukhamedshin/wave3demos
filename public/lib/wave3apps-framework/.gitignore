@@ -1,0 +1,14 @@
+.tmp
+.log
+.project
+.sass-cache
+*.sublime-workspace
+.sass-cache/
+.tmp/
+dist/
+out/
+components/
+node_modules/
+.idea/
+.svn/
+.settings/
