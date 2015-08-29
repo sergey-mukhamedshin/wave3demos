@@ -5,7 +5,7 @@ var Config = {
 	mapApiClientId: '',
 	defaultLocation: { lat: 43.664395, lng: -79.382401 }, // Toronto
 	detectClientLocationByIp: true,
-	serverUrl: 'http://127.0.0.1:10080/traffic/',
+	serverUrl: 'http://wave3demos.herokuapp.com/traffic/',
 	minimumAddressLengthToSearch: 3,
 	lightColor: {
 		green: 1.2,
